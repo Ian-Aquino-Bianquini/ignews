@@ -5,7 +5,7 @@ import { api } from "../../services/api";
 import { getStripeJs } from "../../services/stripejs";
 import styles from "./styles.module.scss";
 
-function SubscribeButton() {
+export function SubscribeButton() {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -41,5 +41,3 @@ function SubscribeButton() {
     </button>
   );
 }
-
-export default SubscribeButton;
