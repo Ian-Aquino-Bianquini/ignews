@@ -1,22 +1,22 @@
-import { GetStaticProps } from 'next';
-import Head from 'next/head';
-import Link from 'next/link';
+import { GetStaticProps } from "next";
+import Head from "next/head";
+import Link from "next/link";
 import { RichText } from "prismic-dom";
-import { getPrismicClient } from '../../services/prismic';
-import styles from './styles.module.scss';
+import { getPrismicClient } from "../../services/prismic";
+import styles from "./styles.module.scss";
 
-type Post = {
+export type Post = {
   slug: string;
   title: string;
   excerpt: string;
   updatedAt: string;
-}
+};
 
 interface PostProps {
-  posts: Post[]
+  posts: Post[];
 }
 
-export default function Posts({posts}: PostProps) {
+export default function Posts({ posts }: PostProps) {
   return (
     <>
       <Head>
@@ -38,28 +38,31 @@ export default function Posts({posts}: PostProps) {
       </main>
     </>
   );
-
-  
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const prismic = getPrismicClient()
+  const prismic = getPrismicClient();
   const response = await prismic.get();
 
-  const posts = response.results.map(post => {
+  const posts = response.results.map((post) => {
     return {
       slug: post.uid,
       title: RichText.asText(post.data.Title),
-      excerpt: post.data.content.find(content => content.type === "paragraph")?.text ?? '',
-      updatedAt: new Date(post.last_publication_date).toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric'
-      })
-    }
-  })
+      excerpt:
+        post.data.content.find((content) => content.type === "paragraph")
+          ?.text ?? "",
+      updatedAt: new Date(post.last_publication_date).toLocaleDateString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        }
+      ),
+    };
+  });
 
   return {
-    props: {posts}
-  }
-}
+    props: { posts },
+  };
+};
