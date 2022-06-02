@@ -1,6 +1,6 @@
 import React from "react";
 import { ActiveLink } from "../ActiveLink";
-import SignInButton from "../SignInButton";
+import { SignInButton } from "../SignInButton";
 import styles from "./style.module.scss";
 
 export function Header() {
