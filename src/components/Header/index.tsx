@@ -1,10 +1,9 @@
-import React from 'react';
-import { ActiveLink } from '../ActiveLink';
-import SignInButton from '../SignInButton';
-import styles from './style.module.scss';
+import React from "react";
+import { ActiveLink } from "../ActiveLink";
+import SignInButton from "../SignInButton";
+import styles from "./style.module.scss";
 
 export function Header() {
-
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
@@ -13,12 +12,12 @@ export function Header() {
           <ActiveLink activeClassName={styles.active} href="/">
             <a>Home</a>
           </ActiveLink>
-          <ActiveLink activeClassName={styles.active} href="/posts" prefetch>
+          <ActiveLink activeClassName={styles.active} href="/posts">
             <a>Posts</a>
           </ActiveLink>
         </nav>
 
-        <SignInButton/>
+        <SignInButton />
       </div>
     </header>
   );
